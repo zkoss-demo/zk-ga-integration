@@ -4,8 +4,8 @@ function afterLibraryLoaded(){
 	window.dataLayer = window.dataLayer || [];
 	window.gtag=function(){dataLayer.push(arguments);}
 	window.gtag('js', new Date());
-	window.gtag('config', 'UA-130285577-1');
+	window.gtag('config', 'XX-000000000-0');
 }
 /* the jq object is a jQuery ($) library bundled in ZK framework available at client side */
 /* getScript will retrieve a JS resource then execute a callback after it has been loaded */
-jq.getScript("https://www.googletagmanager.com/gtag/js?id=UA-130285577-1",afterLibraryLoaded);
+jq.getScript("https://www.googletagmanager.com/gtag/js?id=XX-000000000-0",afterLibraryLoaded);
