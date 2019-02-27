@@ -1,0 +1,8 @@
+<?script src="./1-zk-ga-scripts.js" ?>
+<zk xmlns:w="client">
+	<div>
+		<button label="click me for client activity!" w:onClick="gtag('event', 'Client button clicked');" />
+<!-- 		the zkgtag object defined in 1-zk-ga-scripts.js is available in a client listener -->
+		<button label="click me for client activity with zkgtag object!" w:onClick="zkgtag.sendEvent('client zkgtag button clicked');" />
+	</div>
+</zk>

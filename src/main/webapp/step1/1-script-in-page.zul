@@ -1,0 +1,12 @@
+<?script async src="https://www.googletagmanager.com/gtag/js?id=XX-000000000-0"?>
+<zk>
+<!--  initialization script provided by the google analytics console -->
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		
+		gtag('config', 'XX-000000000-0');
+	</script>
+	<button label="click me!" onClick='Clients.showNotification("Hello world")'/>
+</zk>

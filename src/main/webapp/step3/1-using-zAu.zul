@@ -1,0 +1,8 @@
+<?script src="./1-zk-ga-scripts.js" ?>
+<?script src="./2-zAu-extension.js" ?>
+<zk xmlns:w="client">
+	<div apply="org.potix.zk_integration_ga.step3.Step31Composer">
+		<button id="myBtn" label="click me for server activity!" />
+		<button id="myAuBtn" label="click me for server command!" />
+	</div>
+</zk>

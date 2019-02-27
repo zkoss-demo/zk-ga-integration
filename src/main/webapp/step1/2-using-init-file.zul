@@ -1,0 +1,16 @@
+<!-- elements starting and ending with question marks are processing instructions -->
+<!-- they will be added to the head of the hmtl document -->
+<!-- in the case of a JS resource, it will be retrieved before the client starts to process the page -->
+<?script src="./2-ga-init.js" ?>
+
+<!-- xmlns: xml namespace -->
+<!-- https://www.zkoss.org/wiki/ZUML_Reference/ZUML/Namespaces -->
+<!-- client namespace allow client-side override -->
+<zk xmlns:w="client">
+	<div apply="org.potix.zk_integration_ga.step1.Step12Composer">
+<!-- 		onClick = myBtn is listened by the Step12Composer class -->
+		<button id="myBtn" label="click me for server activity!" />
+<!-- 		w:onClick is a client event. it is executed at client side directly -->
+		<button label="click me for client activity!" w:onClick="gtag('event', 'Hello world client button clicked');" />
+	</div>
+</zk>

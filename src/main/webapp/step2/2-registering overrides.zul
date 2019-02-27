@@ -1,0 +1,64 @@
+<?script src="./1-zk-ga-scripts.js" ?>
+<zk xmlns:w="client">
+	<div >
+		<label value="Registering client-side listener manually on a single object"/>
+		<intbox id="myIntbox"/>
+		<script defer="true">
+			/* zk.$(IDENTIFIER) will retrive a ZK widget (JavaScript object) */
+			/* widget.listen() will register a client-side JavaScript event handler */
+			zk.$('$myIntbox').listen({onClick: function(){zkgtag.sendEvent("Client-side", "User action", "Intbox click", null, false);}});
+		</script>
+	</div>
+	<div >
+		<label value="Adding a client-side listener on single object"/>
+		<listbox>
+			<listitem label="foo"/>
+			<listitem label="bar">
+<!-- 				Using attribute to declare a client-side listener,  -->
+				<attribute w:name="onClick"><![CDATA[
+					zkgtag.sendEvent("Client-side", "User action", "Listitem click", this.getLabel(), false);
+	            ]]></attribute>
+           	</listitem>
+			<listitem label="foobar"/>
+		</listbox>
+	</div>
+	<div >
+		<label value="Using a custom class"/>
+<!-- 		afterload will trigger the inner function after the relevant ZK package has been initialized -->
+<!-- 		extending a default ZK widget class to add custom logic on a default event -->
+<!--		this class will only affect components which declare it as their widget class -->
+		<script><![CDATA[
+		zk.afterLoad('zul', function() {
+			zul.wgt.GaCheckbox = zk.$extends(zul.wgt.Checkbox, {
+				doClick_: function(evt){
+					this.$supers('doClick_', arguments);
+					zkgtag.sendEvent("Client-side", "User action", "Checkbox click", this.getLabel() + ":" + this.isChecked(), false);
+				}
+			});
+		});//zk.afterLoad
+		]]></script>
+<!--	w:use indicate the client (widget) class to be used by this component -->
+		<checkbox w:use="zul.wgt.GaCheckbox" value="foo"/>
+		<checkbox w:use="zul.wgt.GaCheckbox" value="bar"/>
+		<checkbox w:use="zul.wgt.GaCheckbox" value="foobar"/>
+	</div>
+	<div >
+		<label value="Overriding the default class for a component type"/>
+<!-- 		overriding a default class affects every single instance of this type used in this page -->
+		<script><![CDATA[
+		zk.afterLoad('zul.inp', function() {
+			var xTextbox = {};
+			zk.override(zul.inp.Textbox.prototype, xTextbox ,{
+				doClick_ : function() {
+					var result = xTextbox.doClick_.apply(this, arguments);
+					zkgtag.sendEvent("Client-side", "User action", "Textbox click", this.getValue(), false);
+					return result;
+				}
+			});//zk.override
+		});//zk.afterLoad
+		]]></script>
+	<textbox value="foo"/>
+	<textbox value="bar"/>
+	<textbox value="foobar"/>
+	</div>
+</zk>
